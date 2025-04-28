@@ -54,11 +54,16 @@ print(classification_report(y_test, y_pred))
 
 
 plt.figure(figsize=(8,6))
-correct = (y_test == y_pred)
-plt.scatter(X_test[correct,0], X_test[correct,1], c='green', label='Correctly Classified')
-plt.scatter(X_test[~correct,0], X_test[~correct,1], c='black', label='Misclassified')
+
+# Ispravno klasificirani podaci (zeleni)
+plt.scatter(X_test[y_test == y_pred, 0], X_test[y_test == y_pred, 1], c='green', marker='x', label='Correctly Classified')
+
+# Pogrešno klasificirani podaci (crni)
+plt.scatter(X_test[y_test != y_pred, 0], X_test[y_test != y_pred, 1], c='black', marker='x', label='Incorrectly Classified')
+
 plt.xlabel('x1')
 plt.ylabel('x2')
+plt.title('Testni podaci sa označenim ispravno i pogrešno klasificiranim primjerima')
 plt.legend()
-plt.title('Prikaz klasifikacije testnog skupa')
+plt.grid(True)
 plt.show()
