@@ -256,3 +256,4 @@ plt.legend(loc='upper left')
 plt.title(f"SVM (Optimalni C={best_C}, gamma={best_gamma}) - Točnost: {accuracy_score(y_train, y_train_pred):.3f}")
 plt.tight_layout()
 plt.show()
+

@@ -1,0 +1,31 @@
+1. Što je KNN?
+-K-Nearest Neighbors (K najbližih susjeda) je:
+-Nenadgledani ili češće nadgledani algoritam strojnog učenja (ovisno o kontekstu).
+-Koristi se za klasifikaciju i regresiju (najčešće klasifikaciju).
+-Ne parametarski – ne pretpostavlja nikakvu distribuciju podataka.
+-Leni učenik (lazy learner) – ne "uči" tijekom treniranja, već sve radi u trenutku predikcije
+
+2. Kako radi KNN? – korak po korak
+Zamislimo da imamo novi uzorak (npr. točku na ravnini) i želimo mu predvidjeti klasu. KNN radi sljedeće:
+
+📌 Koraci:
+Odaberi broj susjeda (K) – npr. K = 3, 5, 7 itd.
+
+Izračunaj udaljenost između nove točke i svih točaka u trening skupu.
+
+Najčešće se koristi Euklidska udaljenost.
+
+Sortiraj sve točke prema udaljenosti od nove točke.
+
+Uzmi K najbližih susjeda.
+
+Klasifikacija:
+
+Gledaj klase tih K susjeda.
+
+Nova točka dobiva klasu koja je najčešća među susjedima (glasanje).
+
+Regresija:
+
+Prosječna vrijednost ciljne varijable među K susjeda.
+

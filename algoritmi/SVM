@@ -1,0 +1,68 @@
+1. Što je SVM?
+-SVM (Support Vector Machine) je:
+-Nadzirani algoritam strojnog učenja.
+-Koristi se najčešće za klasifikaciju, ali može i za regresiju (SVR).
+-Pokušava pronaći granicu (hiperplohu) koja najbolje razdvaja klase podataka.
+-Ideja je da se nađe hiperploha s maksimalnim marginama – tj. što je dalje moguća od najbližih točaka svake klase.
+
+2. Ključni pojmovi
+📌 Hiperploha:
+U 2D: linija.
+
+U 3D: ravnina.
+
+U višim dimenzijama: “hiperploha”.
+
+📌 Margin:
+Razmak između najbližih točaka svake klase i razdjelnice.
+
+SVM želi maksimizirati marginu – veća margina znači bolje generaliziranje.
+
+📌 Support vectors:
+Točke podataka najbliže razdjelnici.
+
+One određuju poziciju i orijentaciju razdjelnice.
+
+Samo one su “bitne” – ostale točke ne utječu na granicu direktno.
+
+3. Kako radi SVM?
+🧠 Ideja:
+Naći najbolju razdjelnicu (hiperplohu) koja dijeli podatke s najvećom marginom i što manje pogrešaka.
+
+ 5. Nelinearno odvojivi podaci – Kernel trik
+Ako se klase ne mogu razdvojiti pravom linijom, koristimo kernel trick – matematičku metodu koja mapira podatke u višu dimenziju gdje su linearno odvojivi.
+
+Najpoznatiji kerneli:
+
+Linear: bez transformacije
+
+Polynomial
+
+RBF (Radial Basis Function) – najčešći, koristi Gaussian funkciju
+
+Sigmoid
+
+Primjer:
+
+Podaci raspoređeni kao prsten – ne mogu se razdvojiti ravnom linijom.
+
+RBF kernel može mapirati u 3D prostor gdje su odvojivi.
+
+6. Prednosti i nedostaci
+✅ Prednosti:
+Vrlo moćan kod jasno odvojivih klasa.
+
+Dobar u visoko-dimenzionalnim prostorima.
+
+Samo support vectors utječu na model ➝ efikasan.
+
+Odlično se nosi s malim i srednje velikim skupovima podataka.
+
+❌ Nedostaci:
+Sporo treniranje kod velikih skupova.
+
+Ne radi dobro kad su klase preklapajuće bez pravilne parametrizacije.
+
+Odabir kernela i parametara (C, gamma) može biti složen.
+
+Nije intuitivan kao npr. KNN ili stabla.
