@@ -1,0 +1,123 @@
+🔹 Linearna regresija
+✅ Koristi se za: regresijske probleme (kontinuirana vrijednost izlaza)
+
+❌ Nije pogodna za: klasifikaciju (npr. kupio/nije kupio)
+
+⚠️ Primjer: predviđanje cijene, težine, itd.
+
+
+🔹 Binarna logistička regresija
+✅ Koristi se za: binarnu klasifikaciju (0/1, da/ne)
+
+❌ Nije pogodna za: više klasa bez prilagodbe
+
+➕ Jednostavna, brza, interpretabilna
+
+➖ Ne radi dobro kad podaci nisu linearno razdvojivi
+Podaci su linearno razdvojivi kada možemo povući pravu 
+liniju (ili ravninu u višim dimenzijama) koja čisto odjeljuje klase.
+
+
+🔹 Višeklasna logistička regresija
+✅ Koristi se za: klasifikaciju s više od dvije klase (npr. jabuka, banana, naranča)
+
+❌ Nije pogodna za: vrlo kompleksne nelinearne odnose
+
+⚠️ Implementira se kao "one-vs-rest" ili "softmax"
+
+"One-vs-Rest" (OvR)
+Ideja: za svaku klasu napraviš poseban binarni model:
+
+Ako imaš klase A, B i C:
+
+Model 1: A vs (B + C)
+
+Model 2: B vs (A + C)
+
+Model 3: C vs (A + B)
+
+➡️ Kad predviđaš, svaki model daje vjerojatnost da uzorak pripada toj klasi.
+➡️ Izabereš onu klasu koja ima najveću vjerojatnost.
+
+✅ Prednosti:
+
+Jednostavno
+
+Brzo za mali broj klasa
+
+❌ Nedostatak:
+
+Ne uzima sve klase u obzir istovremeno
+
+"Softmax" (Multinomial)
+Sve klase se rješavaju odjednom u jednoj formuli.
+
+Umjesto sigmoid funkcije koristi se softmax funkcija koja daje vjerojatnosti za svaku klasu, a njihov zbroj je 1.
+
+➡️ Model nauči direktno:
+"Kolika je vjerojatnost da uzorak pripada A, B ili C?"
+
+✅ Prednosti:
+
+Sve klase se tretiraju zajedno
+
+Bolji rezultati kod problema s više klasa
+
+❌ Malo složeniji model
+
+🔹 KNN (K najbližih susjeda)
+✅ Koristi se za: klasifikaciju (i regresiju), jednostavan model
+
+➕ Ne pretpostavlja oblik granice (nelinearan!)
+
+❌ Sporo kod velikih skupova, osjetljiv na šum
+
+❌ Ne voli visoku dimenzionalnost (curse of dimensionality)
+
+
+🔹 SVM (Support Vector Machine)
+✅ Odličan za: binarnu klasifikaciju, posebno kad je razdvojivost jaka
+
+➕ Dobar i u malim skupovima
+
+➖ Loš za velike setove i višeklasne probleme
+
+➕ Može biti nelinearan uz kernel (RBF, polynomial)
+
+
+🔹 K-srednjih vrijednosti (K-means)
+✅ Koristi se za: nesupervizirano učenje (nema oznaka)
+
+➖ Nije klasifikacija u pravom smislu (nije predikcija)
+
+➖ Pretpostavlja da su klasteri "okrugli", jednako veličine
+
+⚠️ Može pomoći za inicijalnu analizu
+
+K-means je algoritam za grupiranje (clustering) — znači nesupervizirano učenje,
+ gdje nema oznaka (npr. nema "klasa", nema 0 ili 1).
+
+👉 Grupirati (klasterirati) slične podatke u K grupa tako da su
+ podaci unutar iste grupe što sličniji (po udaljenosti).
+
+✅ Kada i zašto se koristi?
+Kad nemaš oznake (nema y), a želiš vidjeti strukturu podataka
+
+Za inicijalnu analizu (pomoć u razumijevanju podataka)
+
+U kompresiji slika (npr. kvantizacija boja)
+
+Grupiranje korisnika po ponašanju, tekstova po temama itd.
+➡️ Znači, ne predviđa "0 ili 1", već kaže "ovo je grupa 0", "ovo je grupa 1"... 
+ali bez značenja osim ako ti ne dodaš smisao.
+
+Ograničenja K-means algoritma
+➖ 1. Pretpostavlja da su klasteri okrugli i jednako veliki
+Udaljenost između točaka se računa po Euklidskoj udaljenosti
+
+To znači da "najbliža sredina" = centar kruga
+
+Ako su tvoje klase izdužene, nepravilne, različitih veličina ili gustoće – K-means može loše grupirati
+
+📌 Primjer gdje K-means ne radi dobro:
+Dva klastera u obliku polumjeseca – K-means će ih "rezati" pogrešno.

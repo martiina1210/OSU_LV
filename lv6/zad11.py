@@ -125,3 +125,62 @@ plt.legend(loc='upper left')
 plt.title("KNN (K=5) - Točnost: " + "{:0.3f}".format((accuracy_score(y_train, y_train_p_knn))))
 plt.tight_layout()
 plt.show()
+
+# 2. Analiza granica odluke za različite vrijednosti K
+for k in [1, 5, 100]:
+    KNN_model_k = KNeighborsClassifier(n_neighbors=k)
+    KNN_model_k.fit(X_train_n, y_train)
+
+    # granica odluke pomocu KNN za razlicite vrijednosti K
+    plot_decision_regions(X_train_n, y_train, classifier=KNN_model_k)
+    plt.xlabel('Age')
+    plt.ylabel('Estimated Salary')
+    plt.legend(loc='upper left')
+    plt.title(f"KNN (K={k}) - Točnost: " + "{:0.3f}".format(accuracy_score(y_train, KNN_model_k.predict(X_train_n))))
+    plt.tight_layout()
+    plt.show()
+
+    # Ispis točnosti za treniranje i testiranje za različite K
+    print(f"KNN (K={k}): ")
+    print("Tocnost train: " + "{:0.3f}".format((accuracy_score(y_train, KNN_model_k.predict(X_train_n)))))
+    print("Tocnost test: " + "{:0.3f}".format((accuracy_score(y_test, KNN_model_k.predict(X_test_n)))))
+
+
+# Definiramo raspon vrijednosti K za testiranje
+param_grid = {'n_neighbors': np.arange(1, 21)}
+
+# KNN model
+knn = KNeighborsClassifier()
+
+# GridSearchCV sa 10-strukom unakrsnom validacijom
+grid_search = GridSearchCV(estimator=knn, param_grid=param_grid, cv=10, n_jobs=-1, verbose=1)
+
+# Izvodimo unakrsnu validaciju na skupu za treniranje
+grid_search.fit(X_train_n, y_train)
+
+# Optimalni hiperparametar (K)
+best_k = grid_search.best_params_['n_neighbors']
+print(f"Optimalna vrijednost K: {best_k}")
+
+# Ispisujemo najbolju točnost (najbolji rezultat unakrsne validacije)
+print(f"Najbolja točnost na skupu za treniranje: {grid_search.best_score_:.3f}")
+
+# Provodimo predikciju koristeći najbolji model
+best_knn_model = grid_search.best_estimator_
+
+# Evaluacija na skupu za treniranje i testiranje
+y_train_p_best_knn = best_knn_model.predict(X_train_n)
+y_test_p_best_knn = best_knn_model.predict(X_test_n)
+
+print("KNN (optimalni K): ")
+print("Tocnost train: " + "{:0.3f}".format((accuracy_score(y_train, y_train_p_best_knn))))
+print("Tocnost test: " + "{:0.3f}".format((accuracy_score(y_test, y_test_p_best_knn))))
+
+# Granica odluke za najbolji KNN model
+plot_decision_regions(X_train_n, y_train, classifier=best_knn_model)
+plt.xlabel('Age')
+plt.ylabel('Estimated Salary')
+plt.legend(loc='upper left')
+plt.title(f"KNN (Optimalni K={best_k}) - Točnost: " + "{:0.3f}".format((accuracy_score(y_train, y_train_p_best_knn))))
+plt.tight_layout()
+plt.show()
